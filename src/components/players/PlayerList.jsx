@@ -94,11 +94,14 @@ const PlayerList = ({ searchTerm}) => {
     };
 
 
-    const filteredPlayers = sortedPlayers().filter(player =>
-        player.firstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        player.lastname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        player.nickname.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const lowerSearch = searchTerm ? searchTerm.toLowerCase() : '';
+
+    const filteredPlayers = sortedPlayers().filter(player => {
+        const first = player.firstname ? player.firstname.toLowerCase() : '';
+        const last = player.lastname ? player.lastname.toLowerCase() : '';
+        const nick = player.nickname ? player.nickname.toLowerCase() : '';
+        return first.includes(lowerSearch) || last.includes(lowerSearch) || nick.includes(lowerSearch);
+    });
 
 
     const currentItems = filteredPlayers.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);

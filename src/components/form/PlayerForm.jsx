@@ -20,18 +20,21 @@ const PlayerForm = ({ player, onChange, onSubmit, onCancel, submitLabel, isEditi
         fetchInstruments();
     }, [filterPupitre]);
 
-    const playerToSave =  {
-        firstname: player.firstname,
-        lastname: player.lastname,
-        nickname: player.nickname,
-        pupitre: player.pupitre,
-        instrumentId: player.instrumentId
-    };
-
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
+            // Normalize nickname: allow empty or null
+            const normalizedNickname = player.nickname && player.nickname.trim() !== '' ? player.nickname.trim() : null;
+
+            const playerToSave = {
+                firstname: player.firstname,
+                lastname: player.lastname,
+                nickname: normalizedNickname,
+                pupitre: player.pupitre,
+                instrumentId: player.instrumentId
+            };
+
             if (isEditing) {
                 await updatePlayer(player.id, playerToSave);
             } else {
@@ -62,7 +65,7 @@ const PlayerForm = ({ player, onChange, onSubmit, onCancel, submitLabel, isEditi
             <input
                 type="text"
                 placeholder="Surnom"
-                value={player.nickname || ' '}
+                value={player.nickname || ''}
                 onChange={(e) => onChange(prev => ({...prev, nickname: e.target.value}))}
             />
             <div className="form-pupitre">

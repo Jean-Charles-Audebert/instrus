@@ -8,6 +8,8 @@ const extractId = (refOrId) => typeof refOrId === "string" ? refOrId : refOrId?.
 
 export const isNicknameUnique = async (nickname, excludeId = null) => {
     try {
+        // Empty or null nickname is allowed and considered unique
+        if (!nickname) return true;
         const players = await playerService.readAll();
         return !players.some(player => player.nickname === nickname && player.id !== excludeId);
     } catch (error) {
