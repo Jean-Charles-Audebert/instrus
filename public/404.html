@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Not Found</title>
+    <script>
+      // GitHub Pages SPA fallback
+      // If the requested path doesn't match a file, GitHub Pages serves this 404.
+      // We load the SPA index from the repository base while keeping the URL in the address bar.
+      (function () {
+        var base = '/instrus';
+        var index = base + '/index.html';
+        try {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', index, true);
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              if (xhr.status >= 200 && xhr.status < 300) {
+                // Replace document with fetched index.html while preserving URL
+                document.open();
+                document.write(xhr.responseText);
+                document.close();
+                // Update base tag if present so relative assets resolve correctly
+                var bases = document.getElementsByTagName('base');
+                if (!bases.length) {
+                  var b = document.createElement('base');
+                  b.href = base + '/';
+                  document.head.appendChild(b);
+                }
+              } else {
+                // fallback message if index can't be loaded
+                document.body.innerHTML = '<h1>Page not found</h1><p>Unable to load the application index.</p>';
+              }
+            }
+          };
+          xhr.send();
+        } catch (e) {
+          document.body.innerHTML = '<h1>Page not found</h1><p>Unable to load the application index.</p>';
+        }
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
