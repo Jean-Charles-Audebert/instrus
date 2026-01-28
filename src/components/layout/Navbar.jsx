@@ -68,6 +68,7 @@ const Navbar = ({ onSearch }) => {
                 <ul>
                     <li><Link to="instrus/players">Joueurs</Link></li>
                     <li><Link to="instrus/instruments">Instruments</Link></li>
+                    <li><Link to="instrus/lightstock">Stock Lumières</Link></li>
                     {/*<li><Link to="instrus/tripods">Trépieds</Link></li>*/}
                     {/*<li><Link to="instrus/loans">Prêts</Link></li>*/}
 

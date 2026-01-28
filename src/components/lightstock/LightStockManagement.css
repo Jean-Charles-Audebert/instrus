@@ -1,0 +1,264 @@
+/* Light Stock Management - Mobile First */
+
+.light-stock-container {
+    max-width: 100%;
+    font-family: inherit;
+}
+
+.light-stock-container.loading,
+.light-stock-container.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.light-stock-container.error {
+    flex-direction: column;
+    gap: 1rem;
+    color: #d32f2f;
+}
+
+.light-stock-container.error button {
+    padding: 0.75rem 1.5rem;
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.light-stock-container.error button:active {
+    background-color: #b71c1c;
+}
+
+/* Header */
+.light-stock-header {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.light-stock-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #1a1a1a;
+}
+
+/* Table */
+.light-stock-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    font-size: 0.95rem;
+}
+
+.light-stock-table thead {
+    background-color: #1976d2;
+    color: rgb(0, 0, 0);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.light-stock-table th {
+    text-align: center;
+    font-weight: 600;
+    border-bottom: 2px solid #1565c0;
+}
+
+.light-stock-table tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.15s ease;
+}
+
+.light-stock-table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Ligne de séparation (première instrument sans joueur) */
+.light-stock-table tbody tr.separator {
+    border-top: 2px solid #1976d2;
+}
+
+/* Colonnes */
+.light-stock-table td {
+    vertical-align: middle;
+}
+
+.instru-code {
+    font-weight: 600;
+    color: #1976d2;
+    /* min-width: 80px; */
+}
+
+.player-name {
+    color: #333;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.stock-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+/* Checkbox personnalisé */
+.stock-checkbox {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    accent-color: #1976d2;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    transition: all 0.2s ease;
+}
+
+.stock-checkbox:checked {
+    border-color: #1976d2;
+    background-color: #1976d2;
+}
+
+.stock-checkbox:active,
+.stock-checkbox:focus-visible {
+    outline: 2px solid #1976d2;
+    outline-offset: 2px;
+}
+
+/* Label du stock (IN/OUT) */
+.stock-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    /* min-width: 40px; */
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Footer - Totaux */
+.light-stock-table tfoot {
+    background-color: #f5f5f5;
+    border-top: 2px solid #1976d2;
+}
+
+.light-stock-table .totals-row {
+    font-weight: 600;
+    color: #1976d2;
+}
+
+.light-stock-table .totals-row td {
+    padding: 1.25rem 1rem;
+    border: none;
+}
+
+.total-label {
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+/* Bouton Rafraîchir */
+.refresh-button {
+    display: block;
+    margin: 1.5rem auto 0;
+    padding: 0.75rem 1.5rem;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.refresh-button:hover {
+    background-color: #1565c0;
+}
+
+.refresh-button:active {
+    background-color: #0d47a1;
+}
+
+/* Responsive - Petit écran (mobile) */
+@media (max-width: 480px) {
+    .light-stock-container {
+        padding: 0;
+    }
+
+    .light-stock-header h1 {
+        font-size: 1.25rem;
+    }
+
+    .light-stock-table {
+        font-size: 0.9rem;
+    }
+
+    .light-stock-table th {
+        padding: 0;
+        font-size: 0.85rem;
+    }
+
+    .light-stock-table td {
+        padding: 0;
+    }
+
+    .instru-code {
+        min-width: 70px;
+        font-size: 0.9rem;
+    }
+
+    .stock-checkbox {
+        width: 28px;
+        height: 28px;
+    }
+
+    .stock-label {
+        font-size: 0.75rem;
+    }
+
+    .total-label {
+        font-size: 0.85rem;
+    }
+}
+
+/* Responsive - Medium écran */
+@media (min-width: 481px) and (max-width: 768px) {
+    .light-stock-container {
+        padding: 0;
+    }
+
+    .light-stock-table {
+        font-size: 0.93rem;
+    }
+}
+
+/* Responsive - Grand écran */
+@media (min-width: 769px) {
+    .light-stock-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .light-stock-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .light-stock-table {
+        font-size: 1rem;
+    }
+
+    .stock-checkbox {
+        width: 36px;
+        height: 36px;
+    }
+}
